@@ -10,10 +10,13 @@
 
 	let username = '';
 	let password = '';
-	const handleSubmit = () => {
-		// ToDo: do login API call and get token
-		const token = 'to be implemented';
-		localStorage.setItem('access_token', token); // ToDo: change username to token
+	const handleSubmit = async() => {
+		const serverResponse = await fetch('api/auth/login',{
+			method: 'POST',
+			body: JSON.stringify({username, password}),
+		})
+		const data = await serverResponse.json()
+		localStorage.setItem('access_token', data.access_token);
         goto('/', {replaceState: true})
 	};
 </script>
