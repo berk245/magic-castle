@@ -1,5 +1,13 @@
 <script>
+    import { onMount } from 'svelte';
     import {goto} from '$app/navigation'
+
+    onMount(() => {
+        // Redirect to home page if access token is present  
+        const token = localStorage.getItem('access_token')
+        if(token) goto('/')
+    })
+
 	let username = '';
 	let password = '';
 	const handleSubmit = () => {
