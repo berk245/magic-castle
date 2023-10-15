@@ -1,4 +1,5 @@
 import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
 // Our web app's Firebase configuration
 const firebaseConfig = {
@@ -20,3 +21,4 @@ if (!getApps().length) {
 	firebaseApp = initializeApp(firebaseConfig);
 }
 
+export const db = getFirestore(firebaseApp);
