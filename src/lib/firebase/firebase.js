@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { deleteApp, getApp, getApps, initializeApp } from 'firebase/app';
 // Our web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_API_KEY,
@@ -10,4 +10,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let firebaseApp;
+if (!getApps().length) {
+	firebaseApp = initializeApp(firebaseConfig);
+} else {
+	firebaseApp = getApp();
+	deleteApp(firebaseApp);
+	firebaseApp = initializeApp(firebaseConfig);
+}
