@@ -6,5 +6,5 @@ export async function POST(requestEvent){
     const body = await request.json()
 
     // To-do: parse req body and make db query
-    return json({'access-token': 'To be implemented'})
+    return json({'access_token': 'To be implemented'})
 }
