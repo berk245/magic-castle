@@ -1,6 +1,10 @@
 import { json } from '@sveltejs/kit';
 
-export function POST(requestEvent){
-    console.log(requestEvent);
+export async function POST(requestEvent){
+    const {request} = requestEvent
+
+    const body = await request.json()
+
+    // To-do: parse req body and make db query
     return json({'access-token': 'To be implemented'})
 }
