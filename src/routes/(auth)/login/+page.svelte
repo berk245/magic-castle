@@ -1,10 +1,12 @@
 <script>
+    import {goto} from '$app/navigation'
 	let username = '';
 	let password = '';
 	const handleSubmit = () => {
 		// ToDo: do login API call and get token
 		const token = 'to be implemented';
 		localStorage.setItem('access_token', token); // ToDo: change username to token
+        goto('/')
 	};
 </script>
 
