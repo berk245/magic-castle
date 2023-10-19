@@ -1,5 +1,6 @@
 <script>
     import {authHandlers} from '$lib/handlers/auth'
+    import {goto} from '$app/navigation'
 	let email = '';
 	let password = '';
     let confirmPassword = '';
@@ -9,6 +10,8 @@
             return
         }
         await authHandlers.signup({email, password})
+        alert('Signup successful')
+        goto('/login')
 	};
 </script>
 
