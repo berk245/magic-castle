@@ -1,6 +1,11 @@
 <script>
+	import { authHandlers } from '$lib/handlers/auth';
 	let email = '';
 	let password = '';
+
+	const handleSubmit = async () => {
+		await authHandlers.login({ email, password });
+	};
 </script>
 
 <h2>Login</h2>
