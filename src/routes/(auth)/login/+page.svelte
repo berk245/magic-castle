@@ -1,11 +1,14 @@
 <script>
 	import { authHandlers } from '$lib/handlers/auth';
+	import {goto} from '$app/navigation'
 	let email = '';
 	let password = '';
 
 	const handleSubmit = async () => {
 		await authHandlers.login({ email, password });
+		goto('/dashboard')
 	};
+	
 </script>
 
 <h2>Login</h2>
