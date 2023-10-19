@@ -35,4 +35,7 @@
     
 </script>
 
+<div class="page-header">
+    <button on:click={handleSignout}>Sign Out</button>
+</div>
 <slot />
