@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { authHandlers } from '$lib/handlers/auth';
 
-	const noAuthRoutes = ['/', 'login', '/signup'];
+	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
