@@ -8,9 +8,7 @@
 	let currentPath;
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
-			console.log(user);
 			currentPath = window.location.pathname;
-			console.log(currentPath);
 			if (!user && !noAuthRoutes.includes(currentPath)) {
 				// Unauthenticated user wants to go to a protected route
 				goto('/login');
