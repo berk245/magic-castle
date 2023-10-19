@@ -1,2 +1,11 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { onMount } from "svelte";
+    import {goto} from '$app/navigation'
+
+    onMount(() => {
+        // Check for access token in localStorage. Redirect to login page if no token is saved
+        const token = localStorage.getItem('access_token');
+        if(!token) goto('/login')
+        else goto('/dashboard')
+    })
+</script>
