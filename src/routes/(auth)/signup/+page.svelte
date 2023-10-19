@@ -1,4 +1,5 @@
 <script>
+    import {authHandlers} from '$lib/handlers/auth'
 	let email = '';
 	let password = '';
     let confirmPassword = '';
@@ -7,6 +8,7 @@
             alert('Passwords do not match')
             return
         }
+        await authHandlers.signup({email, password})
 	};
 </script>
 
