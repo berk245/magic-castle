@@ -2,6 +2,7 @@
 	import { auth } from '../lib/firebase/firebase';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+    import {authHandlers} from '$lib/handlers/auth'
 
 	const noAuthRoutes = ['/', 'login', '/signup'];
 
@@ -27,6 +28,11 @@
 			}
 		});
 	});
+
+    const handleSignout = async() => {
+        await authHandlers.signout()
+    }
+    
 </script>
 
 <slot />
