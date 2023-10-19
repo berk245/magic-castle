@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 
-	const noAuthRoutes = ['/', 'login', 'signup'];
+	const noAuthRoutes = ['/', 'login', '/signup'];
 
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
