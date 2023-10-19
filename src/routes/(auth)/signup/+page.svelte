@@ -3,6 +3,10 @@
 	let password = '';
     let confirmPassword = '';
 	const handleSubmit = async() => {
+        if(password !== confirmPassword){
+            alert('Passwords do not match')
+            return
+        }
 	};
 </script>
 
