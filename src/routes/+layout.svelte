@@ -42,4 +42,7 @@
 	});
 </script>
 
+{#if $authStore.user}
+	<p>User info is here</p>
+{/if}
 <slot />
