@@ -2,6 +2,7 @@
 	import { auth } from '../lib/firebase/firebase';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { authStore } from '../lib/store/store';
 
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
@@ -18,6 +19,13 @@
 				goto(currentPath);
 				return;
 			}
+			authStore.update((curr) => {
+				return {
+					...curr,
+					user: user.email,
+					loading: false
+				};
+			});
 			if (user) {
 				// Authenticated user
 				goto(currentPath);
