@@ -43,6 +43,6 @@
 </script>
 
 {#if $authStore.user}
-	<button on:click={authHandlers.signout}>Sign Out from main layout</button>
+	<button on:click={authHandlers.signout}>Sign Out</button>
 {/if}
 <slot />
