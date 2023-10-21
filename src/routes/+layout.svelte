@@ -11,6 +11,13 @@
 			currentPath = window.location.pathname;
 			if (!user && !noAuthRoutes.includes(currentPath)) {
 				// Unauthenticated user wants to go to a protected route
+				authStore.update((curr) => {
+					return {
+						...curr,
+						user: null,
+						loading: false
+					};
+				});
 				goto('/login');
 				return;
 			}
