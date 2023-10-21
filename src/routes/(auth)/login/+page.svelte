@@ -1,30 +1,20 @@
 <script>
-    import { onMount } from 'svelte';
-    import {goto} from '$app/navigation'
-
-    onMount(() => {
-        // Redirect to home page if access token is present  
-        const token = localStorage.getItem('access_token')
-        if(token) goto('/')
-    })
-
-	let username = '';
+	import { authHandlers } from '$lib/handlers/auth';
+	import {goto} from '$app/navigation'
+	let email = '';
 	let password = '';
-	const handleSubmit = async() => {
-		const serverResponse = await fetch('api/auth/login',{
-			method: 'POST',
-			body: JSON.stringify({username, password}),
-		})
-		const data = await serverResponse.json()
-		localStorage.setItem('access_token', data.access_token);
-        goto('/', {replaceState: true})
+
+	const handleSubmit = async () => {
+		await authHandlers.login({ email, password });
+		goto('/dashboard')
 	};
+	
 </script>
 
 <h2>Login</h2>
 <form on:submit|preventDefault={handleSubmit}>
 	<div class="input-group">
-		<input type="text" placeholder="Username" bind:value={username} />
+		<input type="text" placeholder="Email" bind:value={email} />
 		<input type="password" placeholder="Password" bind:value={password} />
 		<button type="submit">Login</button>
 	</div>
