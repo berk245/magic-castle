@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { authStore } from '../lib/store/store';
-
+	import {authHandlers} from '../lib/handlers/auth'
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
 	onMount(() => {
@@ -43,6 +43,6 @@
 </script>
 
 {#if $authStore.user}
-	<p>User info is here</p>
+	<button on:click={authHandlers.signout}>Sign Out from main layout</button>
 {/if}
 <slot />
