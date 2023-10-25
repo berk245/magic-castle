@@ -1,11 +1,12 @@
 <script>
-	import { auth } from '../lib/firebase/firebase';
-	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
+	import "../app.postcss";
+    import { auth } from '../lib/firebase/firebase';
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
 
-	const noAuthRoutes = ['/', '/login', '/signup'];
-	let currentPath;
-	onMount(() => {
+    const noAuthRoutes = ['/', '/login', '/signup'];
+    let currentPath;
+    onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
 			currentPath = window.location.pathname;
 			if (!user && !noAuthRoutes.includes(currentPath)) {
@@ -27,4 +28,4 @@
 	});
 </script>
 
-<slot />
+<slot></slot>
