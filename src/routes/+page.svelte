@@ -1,7 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import '../app.postcss';
 
 	onMount(() => {
 		// Check for access token in localStorage. Redirect to login page if no token is saved
