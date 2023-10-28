@@ -19,8 +19,7 @@
 	<div
 		class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
 	>
-		<div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl">
-			<form class="p-12 md:p-24">
+		<div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl p-12 md:p-24">
 				<div class="flex items-center text-lg mb-6 md:mb-8">
 					<input
 						type="text"
@@ -50,10 +49,10 @@
 				</div>
 				<button
 					class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
+					type="submit"
 				>
 					Sign Up
 				</button>
-			</form>
 		</div>
 	</div>
 </form>
