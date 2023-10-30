@@ -4,7 +4,7 @@
 	let email = '';
 
 	const handleSubmit = async () => {
-		console.log('To be implemented');
+		authHandlers.resetPassword({email})
 	};
 </script>
 
