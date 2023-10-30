@@ -39,6 +39,14 @@
 			>
 				Login
 			</button>
+			<div class="font-small mt-4">
+				<span
+					>Don't have an account? <a
+						href="/signup"
+						class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">Sign up</a
+					></span
+				>
+			</div>
 		</div>
 	</div>
 </form>
