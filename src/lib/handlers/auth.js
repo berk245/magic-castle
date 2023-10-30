@@ -1,4 +1,9 @@
-import { createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {
+	createUserWithEmailAndPassword,
+	sendPasswordResetEmail,
+	signInWithEmailAndPassword,
+	signOut
+} from 'firebase/auth';
 import { auth } from '$lib/firebase/firebase';
 
 export const authHandlers = {
@@ -9,7 +14,8 @@ export const authHandlers = {
 		await signInWithEmailAndPassword(auth, email, password);
 	},
 	resetPassword: async ({ email }) => {
-		await sendPasswordResetEmail(auth, email);
+		let serverResponse = await sendPasswordResetEmail(auth, email);
+		return serverResponse;
 	},
 	signout: async () => {
 		await signOut(auth);
