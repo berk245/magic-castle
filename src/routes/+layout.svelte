@@ -28,15 +28,19 @@
 				// Unauthenticated user wants to go to a protected route
 				goto('/login');
 				return;
-			}
-			if (!user && noAuthRoutes.includes(currentPath)) {
+			} else if (!user && noAuthRoutes.includes(currentPath)) {
 				// Unauthenticated user wants to go to a public route
 				goto(currentPath);
 				return;
-			}
-			if (user) {
-				// Authenticated user
+			} else if (user && noAuthRoutes.includes(currentPath)) {
+				// Authenticated user wants to go to a public route
+				goto('/dashboard');
+				return;
+			} else if (user && !noAuthRoutes.includes(currentPath)) {
+				// Authenticated user wants to go to a public route
 				goto(currentPath);
+				return;
+			} else {
 				return;
 			}
 		});
