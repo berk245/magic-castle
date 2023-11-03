@@ -24,23 +24,23 @@
 			updateAuthStore(authStore, user);
 
 			currentPath = window.location.pathname;
-			if (!user && !noAuthRoutes.includes(currentPath)) {
+			const isPublicRoute = noAuthRoutes.includes(currentPath);
+
+			if (!user && !isPublicRoute) {
 				// Unauthenticated user wants to go to a protected route
 				goto('/login');
 				return;
-			} else if (!user && noAuthRoutes.includes(currentPath)) {
+			} else if (!user && isPublicRoute) {
 				// Unauthenticated user wants to go to a public route
 				goto(currentPath);
 				return;
-			} else if (user && noAuthRoutes.includes(currentPath)) {
+			} else if (user && isPublicRoute) {
 				// Authenticated user wants to go to a public route
 				goto('/dashboard');
 				return;
-			} else if (user && !noAuthRoutes.includes(currentPath)) {
-				// Authenticated user wants to go to a public route
+			} else if (user && !isPublicRoute) {
+				// Authenticated user wants to go to a private route
 				goto(currentPath);
-				return;
-			} else {
 				return;
 			}
 		});
