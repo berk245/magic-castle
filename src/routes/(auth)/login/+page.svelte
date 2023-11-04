@@ -11,9 +11,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
-	<div
-		class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
-	>
+	<div class="h-screen overflow-hidden flex items-center justify-center">
 		<div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl p-12 md:p-24">
 			<div class="flex items-center text-lg mb-6 md:mb-8">
 				<input

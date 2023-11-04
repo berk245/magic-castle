@@ -48,4 +48,5 @@
 		<button on:click={authHandlers.signout}>Signout</button>
 	</div>
 {/if}
+
 <slot />
