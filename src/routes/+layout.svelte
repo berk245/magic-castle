@@ -2,9 +2,9 @@
 	import '../app.postcss';
 	import { auth } from '../lib/firebase/firebase';
 	import { authStore } from '$lib/store/store';
-	import { authHandlers } from '$lib/handlers/auth';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import Navbar from '../lib/components/Navbar.svelte';
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
 
@@ -47,9 +47,5 @@
 	});
 </script>
 
-{#if !$authStore.loading && $authStore.user}
-	<div class="header">
-		<button on:click={authHandlers.signout}>Signout</button>
-	</div>
-{/if}
+<Navbar user={$authStore.user} />
 <slot />
