@@ -2,7 +2,7 @@
 	import Alert from '../../../lib/components/Alert.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
 	import { authStore } from '$lib/store/store';
-	import { goto } from '$app/navigation';
+
 	let email = '';
 	let resetFormSubmitSuccess = false;
 	let submitError = false;
