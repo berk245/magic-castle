@@ -5,6 +5,7 @@
 	let password = '';
 	let confirmPassword = '';
 
+	let sendingRequest = false;
 	let signupSuccess = false;
 	let signupError = false;
 
@@ -14,10 +15,13 @@
 				alert('Passwords do not match');
 				return;
 			}
+			sendingRequest = true;
 			await authHandlers.signup({ email, password });
 			signupSuccess = true;
 		} catch (err) {
 			signupError = true;
+		} finally {
+			sendingRequest = false;
 		}
 	};
 </script>
@@ -80,8 +84,13 @@
 				<button
 					class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
 					type="submit"
+					disabled={sendingRequest}
 				>
-					Sign Up
+					{#if sendingRequest}
+						Loading...
+					{:else}
+						Sign Up
+					{/if}
 				</button>
 				<div class="font-small mt-4">
 					<span
@@ -95,4 +104,4 @@
 			</div>
 		</div>
 	</form>
-{/if}}
+{/if}
