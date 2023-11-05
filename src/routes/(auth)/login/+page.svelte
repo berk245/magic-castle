@@ -1,12 +1,22 @@
 <script>
 	import { authHandlers } from '$lib/handlers/auth';
 	import { goto } from '$app/navigation';
+
 	let email = '';
 	let password = '';
+	let sendingRequest = false;
+	let loginError;
 
 	const handleSubmit = async () => {
-		await authHandlers.login({ email, password });
-		goto('/dashboard');
+		try {
+			sendingRequest = true;
+			await authHandlers.login({ email, password });
+			goto('/dashboard');
+		} catch (err) {
+			console.log(err);
+			sendingRequest = false;
+			// To do: Handle error here
+		}
 	};
 </script>
 
@@ -36,8 +46,13 @@
 			<button
 				class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
 				type="submit"
+				disabled={sendingRequest}
 			>
-				Login
+				{#if sendingRequest}
+					Loading...
+				{:else}
+					Login
+				{/if}
 			</button>
 			<div class="font-small mt-4">
 				<a
