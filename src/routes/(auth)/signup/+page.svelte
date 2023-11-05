@@ -89,7 +89,7 @@
 					disabled={sendingRequest}
 				>
 					{#if sendingRequest}
-						Loading...
+						<Spinner/>
 					{:else}
 						Sign Up
 					{/if}
