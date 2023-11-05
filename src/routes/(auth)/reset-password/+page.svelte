@@ -1,19 +1,22 @@
 <script>
 	import Alert from '../../../lib/components/Alert.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
-	import { authStore } from '$lib/store/store';
 
 	let email = '';
+	let sendingRequest = false;
 	let resetFormSubmitSuccess = false;
 	let submitError = false;
 
 	const handleSubmit = async () => {
 		try {
+			sendingRequest = true
 			await authHandlers.resetPassword({ email });
 			resetFormSubmitSuccess = true;
 		} catch (err) {
 			console.log(err);
 			submitError = true;
+		}finally{
+			sendingRequest = false
 		}
 	};
 </script>
@@ -51,12 +54,12 @@
 				<button
 					class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
 					type="submit"
-					disabled={$authStore.loading}
+					disabled={sendingRequest}
 				>
-					{#if !$authStore.loading}
-						Reset Password
+					{#if sendingRequest}
+						Loading...
 					{:else}
-						Loading
+						Reset Password
 					{/if}
 				</button>
 				<div class="font-small mt-4">
