@@ -1,10 +1,31 @@
 <script>
+	import Icon from '@iconify/svelte';
 	export let trick;
+
+	const mainInfo = [
+		{
+			icon: 'fluent-emoji-flat:chair',
+			text: trick.standing ? 'No' : 'Yes'
+		},
+		{
+			icon: 'fxemoji:clock2oclock',
+			text: trick.minutes
+		},
+		{
+			icon: 'fxemoji:flowerplayingcards',
+			text: trick.mix
+		}
+	];
 </script>
 
-<div class="bg-slate-400 text-white rounded-md p-2">
-	<p class="text-lg font-bold truncate">{trick.title}</p>
-	<p>{trick.standing ? 'Standing' : 'Sitting'}</p>
-	<p>{trick.minutes} mins</p>
-	<p class="capitalize truncate">{trick.mix} deck</p>
+<div class="bg-slate-400 text-white rounded-md p-3">
+	<p class="text-xl font-bold truncate text-center mb-2">{trick.title}</p>
+	<div class="flex">
+		{#each mainInfo as figure}
+			<div class="flex-1 flex flex-col items-center gap-2">
+				<Icon icon={figure.icon} class="text-2xl" />
+				<div class="text-xl">{figure.text}</div>
+			</div>
+		{/each}
+	</div>
 </div>

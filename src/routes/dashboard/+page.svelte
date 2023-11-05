@@ -2,7 +2,7 @@
 	import { authStore } from '$lib/store/store';
 	import Card from '$components/Card.svelte';
 
-	const tricks = Array.from({ length: 123 }).map((_, i) => {
+	const tricks = Array.from({ length: 20 }).map((_, i) => {
 		const id = i + 1;
 		return {
 			id,
