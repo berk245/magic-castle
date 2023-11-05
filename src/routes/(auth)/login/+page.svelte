@@ -1,6 +1,7 @@
 <script>
 	import { authHandlers } from '$lib/handlers/auth';
 	import { goto } from '$app/navigation';
+	import Spinner from '$lib/components/Spinner.svelte';
 
 	let email = '';
 	let password = '';
