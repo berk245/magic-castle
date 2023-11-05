@@ -4,26 +4,33 @@
 	export let alertMessage;
 	export let backToRoute;
 
-	const classes = {
-		danger: {
-			container:
-				'p-4 mb-4 text-red-800 align-middle border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800',
-			backButton:
-				'text-red-800 bg-transparent border border-red-800 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-red-600 dark:border-red-600 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800'
-		},
-		success: {
-			container:
-				'p-4 mb-4 text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800',
-			backButton:
-				'text-green-800 bg-transparent border border-green-800 hover:bg-green-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-green-600 dark:border-green-600 dark:text-green-400 dark:hover:text-white dark:focus:ring-green-800'
+	const getAlertClasses = (alertType) => {
+		let color;
+
+		switch (alertType) {
+			case 'danger':
+				color = 'red';
+				break;
+			case 'success':
+				color = 'green';
+				break;
+			default:
+				break;
 		}
+
+		return {
+			container: `p-4 mb-4 text-${color}-800 border border-${color}-300 rounded-lg bg-${color}-50 dark:bg-gray-800 dark:text-${color}-400 dark:border-${color}-800`,
+			backButton: `text-${color}-800 bg-transparent border border-${color}-800 hover:bg-${color}-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-${color}-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-${color}-600 dark:border-${color}-600 dark:text-${color}-400 dark:hover:text-white dark:focus:ring-${color}-800`
+		};
 	};
+
+	const classes = getAlertClasses(alertType);
 </script>
 
 <div
 	class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
 >
-	<div id="alert-additional-content-2" class={classes[alertType].container} role="alert">
+	<div id="alert-additional-content-2" class={classes.container} role="alert">
 		<div class="flex items-center">
 			<svg
 				class="flex-shrink-0 w-4 h-4 mr-2"
@@ -46,7 +53,7 @@
 			<a href={backToRoute}>
 				<button
 					type="button"
-					class={classes[alertType].backButton}
+					class={classes.backButton}
 					data-dismiss-target="#alert-additional-content-2"
 					aria-label="Close"
 					>Go back
