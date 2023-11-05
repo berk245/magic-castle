@@ -1,7 +1,7 @@
 <script>
 	import Alert from '../../../lib/components/Alert.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
-
+	import Spinner from '$lib/components/Spinner.svelte';
 	let email = '';
 	let sendingRequest = false;
 	let resetFormSubmitSuccess = false;
