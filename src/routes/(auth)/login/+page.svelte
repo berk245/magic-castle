@@ -50,7 +50,7 @@
 				disabled={sendingRequest}
 			>
 				{#if sendingRequest}
-					Loading...
+					<Spinner/>
 				{:else}
 					Login
 				{/if}
