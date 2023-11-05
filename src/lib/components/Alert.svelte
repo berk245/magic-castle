@@ -50,7 +50,7 @@
 			{alertMessage}
 		</div>
 		<div class="flex">
-			<a href={backToRoute}>
+			<a href={backToRoute} target="_self">
 				<button
 					type="button"
 					class={classes.backButton}
