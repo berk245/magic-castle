@@ -57,7 +57,7 @@
 					disabled={sendingRequest}
 				>
 					{#if sendingRequest}
-						Loading...
+						<Spinner/>
 					{:else}
 						Reset Password
 					{/if}
