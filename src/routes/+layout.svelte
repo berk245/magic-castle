@@ -47,5 +47,7 @@
 	});
 </script>
 
-<Navbar user={$authStore.user} />
+<div class="h-[70px]">
+	<Navbar user={$authStore.user} />
+</div>
 <slot />
