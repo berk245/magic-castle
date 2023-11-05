@@ -1,6 +1,8 @@
 <script>
 	import Alert from '../../../lib/components/Alert.svelte';
+	import Spinner from '$lib/components/Spinner.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
+
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
