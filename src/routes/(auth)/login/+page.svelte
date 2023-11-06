@@ -15,8 +15,9 @@
 			goto('/dashboard');
 		} catch (err) {
 			console.log(err);
-			sendingRequest = false;
 			// To do: Handle error here
+		} finally {
+			sendingRequest = false;
 		}
 	};
 </script>
@@ -50,7 +51,7 @@
 				disabled={sendingRequest}
 			>
 				{#if sendingRequest}
-					<Spinner/>
+					<Spinner />
 				{:else}
 					Login
 				{/if}
