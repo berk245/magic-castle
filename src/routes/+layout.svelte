@@ -36,7 +36,7 @@
 				return;
 			} else if (user && isPublicRoute) {
 				// Authenticated user wants to go to a public route
-				goto('/dashboard');
+				goto('/gallery');
 				return;
 			} else if (user && !isPublicRoute) {
 				// Authenticated user wants to go to a private route

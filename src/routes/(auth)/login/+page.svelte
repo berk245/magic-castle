@@ -6,7 +6,7 @@
 
 	const handleSubmit = async () => {
 		await authHandlers.login({ email, password });
-		goto('/dashboard');
+		goto('/gallery');
 	};
 </script>
 

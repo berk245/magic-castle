@@ -6,6 +6,6 @@
 		// Check for access token in localStorage. Redirect to login page if no token is saved
 		const token = localStorage.getItem('access_token');
 		if (!token) goto('/login');
-		else goto('/dashboard');
+		else goto('/gallery');
 	});
 </script>
