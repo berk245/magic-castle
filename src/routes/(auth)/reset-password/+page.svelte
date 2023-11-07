@@ -1,5 +1,5 @@
 <script>
-	import Alert from '../../../lib/components/Alert.svelte';
+	import Alert from '$components/Alert.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
 	import { authStore } from '$lib/store/store';
 
