@@ -1,6 +1,6 @@
 <script>
-	import Alert from '../../../lib/components/Alert.svelte';
-	import Spinner from '$lib/components/Spinner.svelte';
+	import Alert from '$components/Alert.svelte';
+	import Spinner from '$components/Spinner.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
 
 	let email = '';
@@ -29,9 +29,7 @@
 </script>
 
 {#if signupSuccess}
-	<div
-		class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
-	>
+	<div class="h-screen overflow-hidden flex items-center justify-center">
 		<Alert
 			alertType="success"
 			title="Success"
@@ -40,9 +38,7 @@
 		/>
 	</div>
 {:else if signupError}
-	<div
-		class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
-	>
+	<div class="h-screen overflow-hidden flex items-center justify-center">
 		<Alert
 			alertType="danger"
 			title="Error"
@@ -52,9 +48,7 @@
 	</div>
 {:else}
 	<form on:submit|preventDefault={handleSubmit}>
-		<div
-			class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
-		>
+		<div class="h-screen overflow-hidden flex items-center justify-center">
 			<div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl p-12 md:p-24">
 				<div class="flex items-center text-lg mb-6 md:mb-8">
 					<input
@@ -89,19 +83,21 @@
 					disabled={sendingRequest}
 				>
 					{#if sendingRequest}
-						<Spinner/>
+						<Spinner />
 					{:else}
 						Sign Up
 					{/if}
 				</button>
 				<div class="font-small mt-4">
-					<span
-						>Already have an account? <a
+					<span>
+						Already have an account?
+						<a
 							href="/login"
 							class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-							>Go to login page</a
-						></span
-					>
+						>
+							Go to login page
+						</a>
+					</span>
 				</div>
 			</div>
 		</div>

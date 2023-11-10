@@ -4,7 +4,7 @@
 	import { authStore } from '$lib/store/store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import Navbar from '../lib/components/Navbar.svelte';
+	import Navbar from '$components/Navbar.svelte';
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
 
@@ -36,7 +36,7 @@
 				return;
 			} else if (user && isPublicRoute) {
 				// Authenticated user wants to go to a public route
-				goto('/dashboard');
+				goto('/gallery');
 				return;
 			} else if (user && !isPublicRoute) {
 				// Authenticated user wants to go to a private route
@@ -47,5 +47,7 @@
 	});
 </script>
 
-<Navbar user={$authStore.user} />
+<div class="h-[70px]">
+	<Navbar user={$authStore.user} />
+</div>
 <slot />

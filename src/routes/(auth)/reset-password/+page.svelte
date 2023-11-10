@@ -1,5 +1,5 @@
 <script>
-	import Alert from '../../../lib/components/Alert.svelte';
+	import Alert from '$components/Alert.svelte';
 	import { authHandlers } from '$lib/handlers/auth';
 	import Spinner from '$lib/components/Spinner.svelte';
 	let email = '';
@@ -9,14 +9,14 @@
 
 	const handleSubmit = async () => {
 		try {
-			sendingRequest = true
+			sendingRequest = true;
 			await authHandlers.resetPassword({ email });
 			resetFormSubmitSuccess = true;
 		} catch (err) {
 			console.log(err);
 			submitError = true;
-		}finally{
-			sendingRequest = false
+		} finally {
+			sendingRequest = false;
 		}
 	};
 </script>
@@ -37,9 +37,7 @@
 	/>
 {:else}
 	<form on:submit|preventDefault={handleSubmit}>
-		<div
-			class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
-		>
+		<div class="h-screen overflow-hidden flex items-center justify-center">
 			<div class="bg-white lg:w-6/12 md:7/12 w-8/12 shadow-3xl rounded-xl p-12 md:p-24">
 				<div class="flex items-center text-lg mb-6 md:mb-8">
 					<input
@@ -57,7 +55,7 @@
 					disabled={sendingRequest}
 				>
 					{#if sendingRequest}
-						<Spinner/>
+						<Spinner />
 					{:else}
 						Reset Password
 					{/if}
@@ -66,8 +64,9 @@
 					<a
 						href="/login"
 						class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-						>Back to login page</a
 					>
+						Back to login page
+					</a>
 				</div>
 			</div>
 		</div>
