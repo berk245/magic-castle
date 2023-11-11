@@ -16,3 +16,5 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MAGIC_CASTLE_GB }}'
           projectId: magic-castle-gb
+        env:
+            FIREBASE_CLI_EXPERIMENTS: webframeworks
