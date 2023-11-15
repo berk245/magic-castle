@@ -23,6 +23,11 @@
 			//Update the auth store with new user data
 			updateAuthStore(authStore, user);
 
+			// Access user data in Firestore
+			if (!user) return;
+			const userRef = doc(db, 'users', user.uid);
+			const userSnap = await getDoc(userRef);
+
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
 
