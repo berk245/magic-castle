@@ -1,10 +1,10 @@
 <script>
 	import '../app.postcss';
-	import { auth, db } from '../lib/firebase/firebase';
+	import { auth } from '../lib/firebase/firebase';
 	import { authStore } from '$lib/store/store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+	import { getUserTricks } from '$lib/handlers/db.js';
 	import Navbar from '$components/Navbar.svelte';
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
@@ -28,31 +28,6 @@
 		});
 	});
 
-	const getUserTricks = async (user) => {
-		if (!user) return [];
-		const userRef = doc(db, 'users', user.uid);
-		const userSnap = await getDoc(userRef);
-		if (!userSnap.exists()) {
-			console.log('No data for this user found in the collection.');
-			const newUser = doc(db, 'users', user.uid);
-			await setDoc(
-				newUser,
-				{
-					email: user.email
-				},
-				{ merge: true }
-			);
-		}
-		const tricksCollection = collection(userRef, 'tricks');
-		// Get tricks in the collection
-		const userTricks = await getDocs(tricksCollection);
-
-		let formattedTricks = [];
-		userTricks.forEach((doc) => {
-			formattedTricks.push({ ...doc.data(), id: doc.id });
-		});
-		return formattedTricks;
-	};
 	const redirectUser = (user) => {
 		currentPath = window.location.pathname;
 		const isPublicRoute = noAuthRoutes.includes(currentPath);
