@@ -22,7 +22,6 @@
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
 			//Update the auth store with new user data
-			updateAuthStore(authStore, user);
 
 			// Access user data in Firestore
 			if (!user) return;
@@ -50,9 +49,12 @@
 			userTricks.forEach((doc) => {
 				formattedTricks.push({ ...doc.data(), id: doc.id });
 			});
+			updateAuthStore(authStore, user, formattedTricks);
 
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
+
+
 
 			if (!user && !isPublicRoute) {
 				// Unauthenticated user wants to go to a protected route
