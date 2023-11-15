@@ -42,6 +42,9 @@
 			}
 
 			const tricksCollection = collection(userRef, 'tricks');
+			// Get tricks in the collection
+			const userTricks = await getDocs(tricksCollection);
+
 
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
