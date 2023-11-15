@@ -22,30 +22,9 @@
 
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
-			
-			let userTricks = await getUserTricks(user)
+			let userTricks = await getUserTricks(user);
 			updateAuthStore(authStore, user, userTricks);
-
-			currentPath = window.location.pathname;
-			const isPublicRoute = noAuthRoutes.includes(currentPath);
-
-			if (!user && !isPublicRoute) {
-				// Unauthenticated user wants to go to a protected route
-				goto('/login');
-				return;
-			} else if (!user && isPublicRoute) {
-				// Unauthenticated user wants to go to a public route
-				goto(currentPath);
-				return;
-			} else if (user && isPublicRoute) {
-				// Authenticated user wants to go to a public route
-				goto('/gallery');
-				return;
-			} else if (user && !isPublicRoute) {
-				// Authenticated user wants to go to a private route
-				goto(currentPath);
-				return;
-			}
+			redirectUser(user);
 		});
 	});
 
@@ -73,6 +52,27 @@
 			formattedTricks.push({ ...doc.data(), id: doc.id });
 		});
 		return formattedTricks;
+	};
+	const redirectUser = (user) => {
+		currentPath = window.location.pathname;
+		const isPublicRoute = noAuthRoutes.includes(currentPath);
+		if (!user && !isPublicRoute) {
+			// Unauthenticated user wants to go to a protected route
+			goto('/login');
+			return;
+		} else if (!user && isPublicRoute) {
+			// Unauthenticated user wants to go to a public route
+			goto(currentPath);
+			return;
+		} else if (user && isPublicRoute) {
+			// Authenticated user wants to go to a public route
+			goto('/gallery');
+			return;
+		} else if (user && !isPublicRoute) {
+			// Authenticated user wants to go to a private route
+			goto(currentPath);
+			return;
+		}
 	};
 </script>
 
