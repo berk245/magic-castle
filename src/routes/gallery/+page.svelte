@@ -1,6 +1,7 @@
 <script>
 	import Card from '$components/Card.svelte';
-
+	import { authStore } from '$lib/store/store';
+	
 	const tricks = Array.from({ length: 20 }).map((_, i) => {
 		const id = i + 1;
 		return {
