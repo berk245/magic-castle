@@ -45,6 +45,10 @@
 			// Get tricks in the collection
 			const userTricks = await getDocs(tricksCollection);
 
+			let formattedTricks = [];
+			userTricks.forEach((doc) => {
+				formattedTricks.push({ ...doc.data(), id: doc.id });
+			});
 
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
