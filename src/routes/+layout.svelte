@@ -28,6 +28,19 @@
 			const userRef = doc(db, 'users', user.uid);
 			const userSnap = await getDoc(userRef);
 
+			// Check if a user document exists in firestore
+			if (!userSnap.exists()) {
+				// No data in the db. Create a user document in users collection
+				const newUser = doc(db, 'users', user.uid);
+				await setDoc(
+					newUser,
+					{
+						email: user.email
+					},
+					{ merge: true }
+				);
+			}
+
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
 
