@@ -8,12 +8,13 @@
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
 
-	const updateAuthStore = (authStore, user) => {
+	const updateAuthStore = (authStore, user, userTricks) => {
 		authStore.update((curr) => {
 			return {
 				...curr,
 				user: user?.email || null,
-				loading: false
+				loading: false,
+				tricks: userTricks
 			};
 		});
 	};
