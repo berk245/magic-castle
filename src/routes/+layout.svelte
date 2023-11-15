@@ -41,6 +41,8 @@
 				);
 			}
 
+			const tricksCollection = collection(userRef, 'tricks');
+
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
 
