@@ -22,40 +22,12 @@
 
 	onMount(() => {
 		const unsubscribe = auth.onAuthStateChanged(async (user) => {
-			//Update the auth store with new user data
-
-			// Access user data in Firestore
-			if (!user) return;
-			const userRef = doc(db, 'users', user.uid);
-			const userSnap = await getDoc(userRef);
-
-			// Check if a user document exists in firestore
-			if (!userSnap.exists()) {
-				// No data in the db. Create a user document in users collection
-				const newUser = doc(db, 'users', user.uid);
-				await setDoc(
-					newUser,
-					{
-						email: user.email
-					},
-					{ merge: true }
-				);
-			}
-
-			const tricksCollection = collection(userRef, 'tricks');
-			// Get tricks in the collection
-			const userTricks = await getDocs(tricksCollection);
-
-			let formattedTricks = [];
-			userTricks.forEach((doc) => {
-				formattedTricks.push({ ...doc.data(), id: doc.id });
-			});
-			updateAuthStore(authStore, user, formattedTricks);
+			
+			let userTricks = await getUserTricks(user)
+			updateAuthStore(authStore, user, userTricks);
 
 			currentPath = window.location.pathname;
 			const isPublicRoute = noAuthRoutes.includes(currentPath);
-
-
 
 			if (!user && !isPublicRoute) {
 				// Unauthenticated user wants to go to a protected route
@@ -76,6 +48,32 @@
 			}
 		});
 	});
+
+	const getUserTricks = async (user) => {
+		if (!user) return [];
+		const userRef = doc(db, 'users', user.uid);
+		const userSnap = await getDoc(userRef);
+		if (!userSnap.exists()) {
+			console.log('No data for this user found in the collection.');
+			const newUser = doc(db, 'users', user.uid);
+			await setDoc(
+				newUser,
+				{
+					email: user.email
+				},
+				{ merge: true }
+			);
+		}
+		const tricksCollection = collection(userRef, 'tricks');
+		// Get tricks in the collection
+		const userTricks = await getDocs(tricksCollection);
+
+		let formattedTricks = [];
+		userTricks.forEach((doc) => {
+			formattedTricks.push({ ...doc.data(), id: doc.id });
+		});
+		return formattedTricks;
+	};
 </script>
 
 <div class="h-[70px]">
