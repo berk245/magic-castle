@@ -1,9 +1,10 @@
 <script>
 	import '../app.postcss';
-	import { auth } from '../lib/firebase/firebase';
+	import { auth, db } from '../lib/firebase/firebase';
 	import { authStore } from '$lib/store/store';
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
+	import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 	import Navbar from '$components/Navbar.svelte';
 	const noAuthRoutes = ['/', '/login', '/signup'];
 	let currentPath;
