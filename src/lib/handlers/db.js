@@ -1,6 +1,6 @@
 import { db } from '$lib/firebase/firebase';
 import { collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
-import { authStore } from '../store/store';
+import { authStore, setLoading } from '../store/store';
 
 let user;
 authStore.subscribe((curr) => {
@@ -40,9 +40,9 @@ const createUserDocument = async (user) => {
 	return;
 };
 
-
 export const deleteTrick = async (trickId) => {
 	try {
+		setLoading(true)
 		const userRef = doc(db, 'users', user.uid);
 		const tricksCollection = collection(userRef, 'tricks');
 		const trickDoc = doc(tricksCollection, trickId);
@@ -50,6 +50,15 @@ export const deleteTrick = async (trickId) => {
 	} catch (err) {
 		console.log(err);
 	} finally {
-		await getUserTricks(user);
+		let updatedTricksList = await getUserTricks(user);
+		authStore.update((curr) => {
+			return {
+				...curr,
+				tricks: updatedTricksList
+			};
+		});
+		setLoading(false)
 	}
 };
+
+
