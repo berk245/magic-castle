@@ -1,5 +1,5 @@
 import { db } from '$lib/firebase/firebase';
-import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 import { authStore } from '../store/store';
 
 let user;
