@@ -1,5 +1,11 @@
 import { db } from '$lib/firebase/firebase';
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { authStore } from '../store/store';
+
+let user;
+authStore.subscribe((curr) => {
+	user = curr?.user;
+});
 
 export const getUserTricks = async (user) => {
 	if (!user) return [];
@@ -32,4 +38,18 @@ const createUserDocument = async (user) => {
 	);
 	console.log('User created');
 	return;
+};
+
+
+export const deleteTrick = async (trickId) => {
+	try {
+		const userRef = doc(db, 'users', user.uid);
+		const tricksCollection = collection(userRef, 'tricks');
+		const trickDoc = doc(tricksCollection, trickId);
+		await deleteDoc(trickDoc);
+	} catch (err) {
+		console.log(err);
+	} finally {
+		await getUserTricks(user);
+	}
 };
