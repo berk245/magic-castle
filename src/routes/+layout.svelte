@@ -13,7 +13,7 @@
 		authStore.update((curr) => {
 			return {
 				...curr,
-				user: user?.email || null,
+				user: user || null,
 				loading: false,
 				tricks: userTricks
 			};
