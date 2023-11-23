@@ -3,6 +3,7 @@
 	import { authStore } from '$lib/store/store';
 	import Spinner from '$components/Spinner.svelte';
 	import Modal from '../../components/Modal.svelte';
+	import AddTrickForm from '../../components/AddTrickForm.svelte';
 
 	let isModalVisible = false;
 
@@ -31,7 +32,7 @@
 
 		{#if isModalVisible}
 		<Modal {closeModal}>
-			<p>This is the add new trick modal</p>
+			<AddTrickForm/>
 		</Modal>
 		{/if}
 	</section>
