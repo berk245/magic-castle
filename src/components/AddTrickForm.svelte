@@ -2,11 +2,13 @@
 	export let user;
 	import Spinner from '$components/Spinner.svelte';
 	import { createNewTrick } from '$lib/handlers/db';
-
+	
 	let trickTitle;
 	let minutes;
 	let isDeckTricked = null;
 	let isStanding = null;
+
+	let isSubmitSuccess = false;
 
 	const handleSubmit = async () => {
         try{
@@ -20,6 +22,9 @@
 			standing: isStanding,
 			title: trickTitle
 		});
+
+		isSubmitSuccess = true;
+		
         }catch(err){
             alert('Something went wrong. Please try again.')
         }
@@ -27,6 +32,11 @@
 	};
 </script>
 
+{#if isSubmitSuccess}
+<div class="">
+	Trick added successfully!
+</div>
+{:else}
 <form on:submit|preventDefault={handleSubmit}>
 	<div class="bg-white shadow-3xl rounded-xl p-6">
 		<div class="flex items-center text-lg mb-6 md:mb-8">
@@ -81,3 +91,6 @@
 		</button>
 	</div>
 </form>
+{/if}
+
+
