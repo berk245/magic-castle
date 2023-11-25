@@ -5,10 +5,14 @@
 
 	let trickTitle;
 	let minutes;
-	let isDeckTricked;
-	let isStanding;
+	let isDeckTricked = null;
+	let isStanding = null;
 
 	const handleSubmit = async () => {
+        if(!user || !minutes || isDeckTricked === null || isStanding === null){
+            alert('Please fill all the fields')
+            return
+        }
 		await createNewTrick(user, {
 			minutes: minutes,
 			mix: isDeckTricked,
