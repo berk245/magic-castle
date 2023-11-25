@@ -5,3 +5,12 @@ export const authStore = writable({
 	loading: true,
 	tricks: []
 });
+
+export const setLoading = (val) => {
+	authStore.update((curr) => {
+		return {
+			...curr,
+			loading: val
+		};
+	});
+};

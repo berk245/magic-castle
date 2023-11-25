@@ -1,5 +1,6 @@
 <script>
 	import Icon from '@iconify/svelte';
+	import { deleteTrick } from '$lib/handlers/db';
 	export let trick;
 
 	const mainInfo = [
@@ -16,6 +17,10 @@
 			text: trick.mix
 		}
 	];
+
+	const handleDelete = async() => {
+		await deleteTrick(trick.id)
+	}
 </script>
 
 <div class="bg-slate-400 text-white rounded-md p-3">
@@ -27,5 +32,8 @@
 				<div class="text-xl">{figure.text}</div>
 			</div>
 		{/each}
+	</div>
+	<div class="card-actions">
+		<button on:click={handleDelete}>Delete</button>
 	</div>
 </div>
