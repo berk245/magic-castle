@@ -1,5 +1,5 @@
 import { db } from '$lib/firebase/firebase';
-import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
 export const getUserRef = async (user) => {
 	const userRef = doc(db, 'users', user.uid);
@@ -38,3 +38,13 @@ const createUserDocument = async (user) => {
 	console.log('User created');
 	return;
 };
+
+
+export const createNewTrick = async (user, trick) => {
+	const userRef = await getUserRef(user)
+	const tricksCollection = collection(userRef, 'tricks');
+
+	const newTrickRef = addDoc(tricksCollection, trick)
+	return 
+}
+
