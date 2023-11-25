@@ -42,6 +42,8 @@ const createUserDocument = async (user) => {
 
 export const deleteTrick = async (trickId) => {
 	try {
+		const isConfirm = confirm('Are you sure?')
+		if(!isConfirm) return
 		setLoading(true)
 		const userRef = doc(db, 'users', user.uid);
 		const tricksCollection = collection(userRef, 'tricks');
