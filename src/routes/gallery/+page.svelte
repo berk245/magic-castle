@@ -32,7 +32,7 @@
 
 		{#if isModalVisible}
 		<Modal {closeModal}>
-			<AddTrickForm/>
+			<AddTrickForm user={$authStore.user}/>
 		</Modal>
 		{/if}
 	</section>
