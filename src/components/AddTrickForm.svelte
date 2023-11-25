@@ -9,7 +9,8 @@
 	let isStanding = null;
 
 	const handleSubmit = async () => {
-        if(!user || !minutes || isDeckTricked === null || isStanding === null){
+        try{
+            if(!user || !minutes || isDeckTricked === null || isStanding === null){
             alert('Please fill all the fields')
             return
         }
@@ -19,6 +20,10 @@
 			standing: isStanding,
 			title: trickTitle
 		});
+        }catch(err){
+            alert('Something went wrong. Please try again.')
+        }
+        
 	};
 </script>
 
