@@ -1,17 +1,21 @@
 <script>
+	export let user;
 	import Spinner from '$components/Spinner.svelte';
+	import { createNewTrick } from '$lib/handlers/db';
 
 	let trickTitle;
-	let audience;
+	let minutes;
 	let isDeckTricked;
-	let isSeated;
+	let isStanding;
 
-    const handleSubmit = async() => {
-        console.log('Trick title:', trickTitle);
-        console.log('Audience:', audience);
-        console.log('Tricked:', isDeckTricked);
-        console.log('Seated:', isSeated);
-    }
+	const handleSubmit = async () => {
+		await createNewTrick(user, {
+			minutes: minutes,
+			mix: isDeckTricked,
+			standing: isStanding,
+			title: trickTitle
+		});
+	};
 </script>
 
 <form on:submit|preventDefault={handleSubmit}>
@@ -28,34 +32,33 @@
 				type="number"
 				class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
 				placeholder="Minutes #"
-				bind:value={audience} />
+				bind:value={minutes} />
 		</div>
 		<div class="flex items-center text-lg mb-6 md:mb-8">
-            <div class="w-full mr-2">
-                <label for="deck-type" class="block mb-3 text-sm font-medium">Deck type</label>
-                <select
-                    bind:value={isDeckTricked}
-                    id="deck-type"
-                    class="bg-gray-200 rounded pl-6 py-4 focus:outline-none w-full">
-                    <option value="" disabled>Deck type</option>
-                    <option value={false}>Standard</option>
-                    <option value={true}>Tricked</option>
-                </select>
-            </div>
-            
-            <div class="w-full">
-                <label for="seated-type" class="block mb-3 text-sm font-medium">Position</label>
+			<div class="w-full mr-2">
+				<label for="deck-type" class="block mb-3 text-sm font-medium">Deck type</label>
+				<select
+					bind:value={isDeckTricked}
+					id="deck-type"
+					class="bg-gray-200 rounded pl-6 py-4 focus:outline-none w-full">
+					<option value="" selected disabled>-</option>
+					<option value={false}>Standard</option>
+					<option value={true}>Tricked</option>
+				</select>
+			</div>
 
-                <select
-				bind:value={isSeated}
-				id="seated-type"
-				class="bg-gray-200 rounded pl-6 py-4 focus:outline-none w-full">
-				<option selected disabled>Seated?</option>
-				<option value={true}>Seated</option>
-				<option value={false}>Standing</option>
-			</select>
-            </div>
-			
+			<div class="w-full">
+				<label for="seated-type" class="block mb-3 text-sm font-medium">Position</label>
+
+				<select
+					bind:value={isStanding}
+					id="seated-type"
+					class="bg-gray-200 rounded pl-6 py-4 focus:outline-none w-full">
+					<option selected disabled value=''>-</option>
+					<option value={true}>Standing</option>
+					<option value={false}>Seated</option>
+				</select>
+			</div>
 		</div>
 
 		<button
