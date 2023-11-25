@@ -2,7 +2,8 @@
 	export let user;
 	import Spinner from '$components/Spinner.svelte';
 	import { createNewTrick } from '$lib/handlers/db';
-	
+	export let closeModal;
+
 	let trickTitle;
 	let minutes;
 	let isDeckTricked = null;
@@ -24,7 +25,9 @@
 		});
 
 		isSubmitSuccess = true;
-		
+		setTimeout(()=> {
+			closeModal()
+		},3000)
         }catch(err){
 			console.log(err);
             alert('Something went wrong. Please try again.')
