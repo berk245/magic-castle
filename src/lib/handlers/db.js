@@ -1,8 +1,7 @@
 import { db } from '$lib/firebase/firebase';
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 
-export const getUserTricks = async (user) => {
-	if (!user) return [];
+export const getUserRef = async (user) => {
 	const userRef = doc(db, 'users', user.uid);
 	const userSnap = await getDoc(userRef);
 
@@ -10,6 +9,12 @@ export const getUserTricks = async (user) => {
 		console.log('No data for this user found in the collection.');
 		await createUserDocument(user);
 	}
+	return userRef
+}
+
+export const getUserTricks = async (user) => {
+	if (!user) return [];
+	const userRef = await getUserRef(user)
 	const tricksCollection = collection(userRef, 'tricks');
 	// Get tricks in the collection
 	const userTricks = await getDocs(tricksCollection);
