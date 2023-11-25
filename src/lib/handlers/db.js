@@ -51,6 +51,7 @@ export const deleteTrick = async (trickId) => {
 		await deleteDoc(trickDoc);
 	} catch (err) {
 		console.log(err);
+		alert('Something went wrong while deleting the trick. Please try again.')
 	} finally {
 		let updatedTricksList = await getUserTricks(user);
 		authStore.update((curr) => {
