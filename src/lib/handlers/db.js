@@ -1,5 +1,11 @@
 import { db } from '$lib/firebase/firebase';
-import { addDoc, collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
+import { authStore, setLoading } from '../store/store';
+
+let user;
+authStore.subscribe((curr) => {
+	user = curr?.user;
+});
 
 export const getUserRef = async (user) => {
 	const userRef = doc(db, 'users', user.uid);
@@ -38,6 +44,32 @@ const createUserDocument = async (user) => {
 	console.log('User created');
 	return;
 };
+
+export const deleteTrick = async (trickId) => {
+	try {
+		const isConfirm = confirm('Are you sure?')
+		if(!isConfirm) return
+		setLoading(true)
+		const userRef = doc(db, 'users', user.uid);
+		const tricksCollection = collection(userRef, 'tricks');
+		const trickDoc = doc(tricksCollection, trickId);
+		await deleteDoc(trickDoc);
+	} catch (err) {
+		console.log(err);
+		alert('Something went wrong while deleting the trick. Please try again.')
+	} finally {
+		let updatedTricksList = await getUserTricks(user);
+		authStore.update((curr) => {
+			return {
+				...curr,
+				tricks: updatedTricksList
+			};
+		});
+		setLoading(false)
+	}
+};
+
+
 
 
 export const createNewTrick = async (user, trick) => {
