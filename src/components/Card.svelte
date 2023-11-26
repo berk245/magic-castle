@@ -18,9 +18,9 @@
 		}
 	];
 
-	const handleDelete = async() => {
-		await deleteTrick(trick.id)
-	}
+	const handleDelete = async () => {
+		await deleteTrick(trick.id);
+	};
 </script>
 
 <div class="bg-slate-400 text-white rounded-md p-3">
