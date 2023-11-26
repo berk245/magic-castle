@@ -26,7 +26,7 @@
 
 			isSubmitSuccess = true;
 			setTimeout(() => {
-				getUpdatedTricks(user)
+				getUpdatedTricks(user);
 				closeModal();
 			}, 3000);
 		} catch (err) {

@@ -58,7 +58,7 @@ export const deleteTrick = async (trickId) => {
 		console.log(err);
 		alert('Something went wrong while deleting the trick. Please try again.');
 	} finally {
-		getUpdatedTricks(user)
+		getUpdatedTricks(user);
 	}
 };
 

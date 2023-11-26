@@ -34,8 +34,7 @@
 			alertType="success"
 			title="Success"
 			alertMessage="Signup successful. Go back to login page to login"
-			backToRoute="/login"
-		/>
+			backToRoute="/login" />
 	</div>
 {:else if signupError}
 	<div class="h-screen overflow-hidden flex items-center justify-center">
@@ -43,8 +42,7 @@
 			alertType="danger"
 			title="Error"
 			alertMessage="Something went wrong. Please try again."
-			backToRoute="/signup"
-		/>
+			backToRoute="/signup" />
 	</div>
 {:else}
 	<form on:submit|preventDefault={handleSubmit}>
@@ -56,8 +54,7 @@
 						id="username"
 						class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
 						placeholder="Email"
-						bind:value={email}
-					/>
+						bind:value={email} />
 				</div>
 				<div class="flex items-center text-lg mb-6 md:mb-8">
 					<input
@@ -65,8 +62,7 @@
 						id="password"
 						class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
 						placeholder="Password"
-						bind:value={password}
-					/>
+						bind:value={password} />
 				</div>
 				<div class="flex items-center text-lg mb-6 md:mb-8">
 					<input
@@ -74,14 +70,12 @@
 						id="password"
 						class="bg-gray-200 rounded pl-12 py-2 md:py-4 focus:outline-none w-full"
 						placeholder="Confirm password"
-						bind:value={confirmPassword}
-					/>
+						bind:value={confirmPassword} />
 				</div>
 				<button
 					class="bg-gradient-to-b from-gray-700 to-gray-900 font-medium p-2 md:p-4 text-white uppercase w-full rounded"
 					type="submit"
-					disabled={sendingRequest}
-				>
+					disabled={sendingRequest}>
 					{#if sendingRequest}
 						<Spinner />
 					{:else}
@@ -93,8 +87,7 @@
 						Already have an account?
 						<a
 							href="/login"
-							class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"
-						>
+							class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600">
 							Go to login page
 						</a>
 					</span>

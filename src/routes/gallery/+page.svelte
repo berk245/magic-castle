@@ -8,12 +8,12 @@
 	let isModalVisible = false;
 
 	const showModal = () => {
-		isModalVisible = true
-	}
+		isModalVisible = true;
+	};
 
 	const closeModal = () => {
-		isModalVisible = false
-	}
+		isModalVisible = false;
+	};
 </script>
 
 {#if $authStore.loading}
@@ -31,9 +31,9 @@
 		{/each}
 
 		{#if isModalVisible}
-		<Modal {closeModal}>
-			<AddTrickForm user={$authStore.user} {closeModal}/>
-		</Modal>
+			<Modal {closeModal}>
+				<AddTrickForm user={$authStore.user} {closeModal} />
+			</Modal>
 		{/if}
 	</section>
 {/if}
