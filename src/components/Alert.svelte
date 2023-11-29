@@ -28,8 +28,7 @@
 </script>
 
 <div
-	class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center"
->
+	class="bg-yellow-400 dark:bg-gray-800 h-screen overflow-hidden flex items-center justify-center">
 	<div id="alert-additional-content-2" class={classes.container} role="alert">
 		<div class="flex items-center">
 			<svg
@@ -37,11 +36,9 @@
 				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				fill="currentColor"
-				viewBox="0 0 20 20"
-			>
+				viewBox="0 0 20 20">
 				<path
-					d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
-				/>
+					d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
 			</svg>
 			<span class="sr-only">Info</span>
 			<h3 class="text-lg font-medium">{title}</h3>
